@@ -20,13 +20,17 @@
              ng-keyup="lunchItems()">
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default"
+              ng-click="isTooManyLunchItems()">Check If Too Much</button>
          </div>
-         <div class="form-group message">
-           <!-- Your message can go here. -->
-           <p>{{lunch}}</p>
-           <br>
-           <p>Total lunch items: {{howMuch}}</p>
+         <!-- <div class="form-group message alert alert-info"> -->
+          <!-- Your message can go here. -->
+         <div class="form-group message" ng-style="msgAttribs">
+           <p >{{feedbackMsg}}</p>
+
+           <p>{{lunch}} <br>
+           <span>Total lunch items: {{howMuch}}</span>
+          </p>
          </div>
    </div>
    <script src="js/angular.min.js"></script>
