@@ -1,0 +1,33 @@
+
+.message {
+   font-size: 1.3em;
+   font-weight: bold;
+ }
+
+.needEntries {
+  background-color: #ffcc66;
+  color : #ffaa00;
+  border-color : #ff0000 #ff0000;
+  border-style : solid;
+}
+
+.enoughEntries {
+  background-color: #cc4400;
+  color : #bfff80;
+  border-color : #008000 #008000;
+  border-style : solid;
+}
+
+.tooManyEntries {
+  background-color: #ff0066;
+  color : #008000;
+  border-color : #008000 #008000;
+  border-style : solid;
+}
+
+.beginstateEntries {
+    "background-color":#ffcc66;
+    "color" : "blue";
+    "border-color" : brown brown;
+    "border-style" : dotted;
+}

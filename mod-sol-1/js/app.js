@@ -7,75 +7,55 @@
   LunchCheckController.$inject = ['$scope'];
   function LunchCheckController($scope) {
     $scope.lunch = "";
-    $scope.howMuch = 0;
+    $scope.howMany = 0;
     $scope.feedbackMsg = "";
-    $scope.msgAttribs = {
-      "background-color": "pink",
-      "color" : "blue",
-      "border-color" : "brown brown",
-      "border-style" : "dotted"
-    };
+
 
     $scope.lunchItems = function() {
-      var r = $scope.lunch.split(",").length;
-      //console.log( ("lunch split length is:" +  r) );
-      $scope.howMuch = r;
+      var r = ($scope.lunch.split(",").length);
+
+      if (r === "") {
+         $scope.howMany = 0;
+         //console.log( ("checked is:" +  $scope.howMany) );
+      } else {
+        $scope.howMany = r;
+      }
+
     };
 
     $scope.isTooManyLunchItems = function() {
+
         $scope.lunchItems();
+        console.log("howMany is: " + $scope.howMany);
         $scope.currentMsgSettings();
-        //return ( $scope.lunchItems() > lunchItemsLimit );
     }
 
     //called when submit button clicked
     $scope.currentMsgSettings = function() {
         var currentLunchItemsLimit = 3;
 
-        if (0 == $scope.howMuch) {
+        if (0 == $scope.howMany) {
             $scope.feedbackMsg = "Please enter data first";
-        } else if ($scope.howMuch <= currentLunchItemsLimit) {
+        } else if ($scope.howMany <= currentLunchItemsLimit) {
             $scope.feedbackMsg = "Enjoy!";
-        } else if ($scope.howMuch > currentLunchItemsLimit) {
+        } else if ($scope.howMany > currentLunchItemsLimit) {
             $scope.feedbackMsg = "Too much!";
         }
-        $scope.styleAttribs();
-
+      //  $scope.styleAttribs();
     }
 
-    //console.log($scope.howMuch);
     $scope.styleAttribs = function() {
       var lunchItemsLimit = 3;
 
-      if ($scope.howMuch === 0) {
-          //red
-          $scope.msgAttribs = {
-            "background-color": "yellow",
-            "color" : "#ff0000",
-            "border-color" : "#ff0000 #ff0000",
-            "border-style" : "solid"
-          }
-       } else if ($scope.howMuch <= lunchItemsLimit) {
-           //green
-           $scope.msgAttribs = {
-             "background-color": "purple",
-             "color" : "#008000",
-             "border-color" : "#008000 #008000",
-             "border-style" : "solid"
-          }
-       } else if ($scope.howMuch > lunchItemsLimit) {
-         //green
-         $scope.msgAttribs = {
-           "background-color": "brown",
-           "color" : "#008000",
-           "border-color" : "#008000 #008000",
-           "border-style" : "solid"
-          }
+      if ($scope.howMany === 0) {
+          return "needEntries";
+      } else if ($scope.howMany <= lunchItemsLimit) {
+          return "enoughEntries";
+      } else if ($scope.howMany > lunchItemsLimit) {
+         return "tooManyEntries";
        }
 
      }  // sytleattribs function
-
-
 
   }
 
