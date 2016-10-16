@@ -12,15 +12,12 @@
 
 
     $scope.lunchItems = function() {
-      var r = ($scope.lunch.split(",").length);
-
-      if (r === "") {
-         $scope.howMany = 0;
-         //console.log( ("checked is:" +  $scope.howMany) );
-      } else {
-        $scope.howMany = r;
-      }
-
+      //javascript docs say empty string has a value of 1,
+      //& stackoverflow suggested filter function -- good since ECMAScript 5.
+      //so if ar is an empty array, which is returned if no entries yet, then
+      //the length returned to ar.length call, will be 0, which is good.
+      var ar = $scope.lunch.split(",").filter(function(el) {return el.length != 0});
+      $scope.howMany = ar.length;
     };
 
     $scope.isTooManyLunchItems = function() {
@@ -34,7 +31,7 @@
     $scope.currentMsgSettings = function() {
         var currentLunchItemsLimit = 3;
 
-        if (0 == $scope.howMany) {
+        if (!$scope.howMany) {
             $scope.feedbackMsg = "Please enter data first";
         } else if ($scope.howMany <= currentLunchItemsLimit) {
             $scope.feedbackMsg = "Enjoy!";
